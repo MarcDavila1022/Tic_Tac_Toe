@@ -1,1 +1,169 @@
 # Tic_Tac_Toe
+"""
+Lines 8-13: I began by creating the gameboard, I decided to make a list full 
+of minus signs and spaced it out to symbolize the tic-tac-toe board.
+Additionally, the first player/ normal player is X.
+"""
+
+import random
+gameboard = ["-", "-", "-",
+             "-", "-", "-",
+             "-", "-", "-"]
+
+CurrentPlayer = "X"
+
+"""
+Lines 23-32: In the following code, I created the winner to be None since at 
+the beginning it does not exist. Moreover, I made gamerunning True to
+determine when the game is running and to finish the game. Finally,
+I printed the gameboard on the terminal since my skills are not advanced enough
+to create an app. Will have learned how to do it by the end of CS1110!
+"""
+
+winner = None
+gamerunning = True
+def printboard(gameboard):
+    print("_________")
+    print (gameboard[0] + " | " + gameboard[1] + " | " + gameboard[2])
+    print("_________")
+    print (gameboard[3] + " | " + gameboard[4] + " | " + gameboard[5])
+    print("_________")
+    print (gameboard[6] + " | " + gameboard[7] + " | " + gameboard[8])
+    print("---------")
+
+
+"""
+Lines 42-62: We created a function to store the playerinput. Everytime the user chose
+one of the nine numbers from the gameboard, the code will update. However, if the
+spot is already chosen or the number is below/above the range, then all the rest of 
+the code will not execute.
+"""
+
+def playerinput(gameboard):
+    user_choice = int(input("Enter a integer between 1-9: "))
+    if user_choice >= 1 and user_choice <= 9 and gameboard[user_choice-1] == "-":
+        gameboard[user_choice-1] = CurrentPlayer
+    elif user_choice < 1 or user_choice > 9:
+        switchPlayer() != True
+        checkHorizontle(gameboard) != True
+        checkVerticle(gameboard) != True
+        checkDiagnol(gameboard) != True
+        checkTie(gameboard) != True
+        checkWin() != True
+        print("Choice is out of range try again!")
+
+    else:
+        switchPlayer() != True
+        checkHorizontle(gameboard) != True
+        checkVerticle(gameboard) != True
+        checkDiagnol(gameboard) != True
+        checkTie(gameboard) != True
+        checkWin() != True
+        print("Spot alredady taken please try again!")
+
+
+
+
+"""
+Lines 72-106: For the next three functions, they all are to check if there is a diagnol
+win,a horizontal win, or a verticle win. 
+"""
+
+def checkHorizontle(gameboard):
+    global winner
+
+    if gameboard[0] == gameboard[1] == gameboard[2] and gameboard[0] != "-":
+        winner = gameboard[0]
+        return (True)
+    elif gameboard[3] == gameboard[4] == gameboard[5] and gameboard[3] != "-":
+        winner = gameboard[3]
+        return (True)
+    elif gameboard[6] == gameboard[7] == gameboard[8] and gameboard[6] != "-":
+        winner = gameboard[6]
+        return (True)
+
+def checkVerticle(gameboard):
+    global winner
+
+    if gameboard[0] == gameboard[3] == gameboard[6] and gameboard[0] != "-":
+        winner = gameboard[0]
+        return (True)
+    elif gameboard[1] == gameboard[4] == gameboard[7] and gameboard[1] != "-":
+        winner = gameboard[1]
+        return (True)
+    elif gameboard[2] == gameboard[5] == gameboard[8] and gameboard[8] != "-":
+        winner = gameboard[2]
+        return (True)
+
+def checkDiagnol(gameboard):
+    global winner
+
+    if gameboard[0] == gameboard[4] == gameboard[8] and gameboard[0] != "-":
+        winner = gameboard[0]
+        return (True)
+    elif gameboard[2] == gameboard[4] == gameboard[6] and gameboard[2] != "-":
+        winner = gameboard[2]
+        return (True)
+
+"""
+Lines 116-135: The next two functions that is created to check if the game is either a tie 
+or a win, however, I ran into a small error; the reason why I decided to use the 
+exit() command is because the code will glitch when I got a win or a tie and all
+lines were filled up. Subsequently, I used exit(). Hopefully, through some experience
+I will be able to fix my code.
+"""
+
+def checkTie(gameboard):
+    global gamerunning
+    global winner
+
+    if winner == None and "-" not in gameboard:
+        printboard(gameboard)
+        computer(gameboard) != True
+        winner = print("It is a tie!")
+        gamerunning = False
+        exit()
+
+
+
+def checkWin():
+    global gamerunning
+    if checkDiagnol(gameboard) or checkVerticle(gameboard) or checkHorizontle(gameboard):
+        printboard(gameboard)
+        print(f"The winner is {winner}")
+        gamerunning = False
+        exit()
+
+"""
+Lines 144-155: The last two functions to finish off this program are used to to switch the player.
+I also decided to create a small computer that chooses between the gameboard through a random
+command. Additionally, if the spot has already been chosen the code will play again with the while\
+loop.
+"""
+
+def switchPlayer():
+    global CurrentPlayer
+    if CurrentPlayer == "X":
+        CurrentPlayer = "O"
+    else:
+        CurrentPlayer = "X"
+def computer(gameboard):
+    while CurrentPlayer == "O":
+        bot_p = random.randint(0,8)
+        if gameboard[bot_p] == "-":
+            gameboard[bot_p] = "O"
+            switchPlayer()
+
+"""
+Final Lines: While the game is running, we run all the functions and check until it is a tie 
+or a win.
+"""
+while gamerunning:
+    printboard(gameboard)
+    playerinput(gameboard)
+    checkWin()
+    checkTie(gameboard)
+    switchPlayer()
+    computer(gameboard)
+    checkWin()
+    checkTie(gameboard)
