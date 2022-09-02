@@ -1,9 +1,9 @@
 # Tic_Tac_Toe
-"""
-Lines 8-13: I began by creating the gameboard, I decided to make a list full 
-of minus signs and spaced it out to symbolize the tic-tac-toe board.
-Additionally, the first player/ normal player is X.
-"""
+
+#Lines 8-13: I began by creating the gameboard, I decided to make a list full 
+#of minus signs and spaced it out to symbolize the tic-tac-toe board.
+#Additionally, the first player/ normal player is X.
+
 
 import random
 gameboard = ["-", "-", "-",
@@ -12,13 +12,13 @@ gameboard = ["-", "-", "-",
 
 CurrentPlayer = "X"
 
-"""
-Lines 23-32: In the following code, I created the winner to be None since at 
-the beginning it does not exist. Moreover, I made gamerunning True to
-determine when the game is running and to finish the game. Finally,
-I printed the gameboard on the terminal since my skills are not advanced enough
-to create an app. Will have learned how to do it by the end of CS1110!
-"""
+
+#Lines 23-32: In the following code, I created the winner to be None since at 
+#the beginning it does not exist. Moreover, I made gamerunning True to
+#determine when the game is running and to finish the game. Finally,
+#I printed the gameboard on the terminal since my skills are not advanced enough
+#to create an app. Will have learned how to do it by the end of CS1110!
+
 
 winner = None
 gamerunning = True
@@ -32,12 +32,12 @@ def printboard(gameboard):
     print("---------")
 
 
-"""
-Lines 42-62: We created a function to store the playerinput. Everytime the user chose
-one of the nine numbers from the gameboard, the code will update. However, if the
-spot is already chosen or the number is below/above the range, then all the rest of 
-the code will not execute.
-"""
+
+#Lines 42-62: We created a function to store the playerinput. Everytime the user chose
+#one of the nine numbers from the gameboard, the code will update. However, if the
+#spot is already chosen or the number is below/above the range, then all the rest of 
+#the code will not execute.
+
 
 def playerinput(gameboard):
     user_choice = int(input("Enter a integer between 1-9: "))
@@ -64,10 +64,10 @@ def playerinput(gameboard):
 
 
 
-"""
-Lines 72-106: For the next three functions, they all are to check if there is a diagnol
-win,a horizontal win, or a verticle win. 
-"""
+
+#Lines 72-106: For the next three functions, they all are to check if there is a diagnol
+#win,a horizontal win, or a verticle win. 
+
 
 def checkHorizontle(gameboard):
     global winner
@@ -105,13 +105,13 @@ def checkDiagnol(gameboard):
         winner = gameboard[2]
         return (True)
 
-"""
-Lines 116-135: The next two functions that is created to check if the game is either a tie 
-or a win, however, I ran into a small error; the reason why I decided to use the 
-exit() command is because the code will glitch when I got a win or a tie and all
-lines were filled up. Subsequently, I used exit(). Hopefully, through some experience
-I will be able to fix my code.
-"""
+
+#Lines 116-135: The next two functions that is created to check if the game is either a tie 
+#or a win, however, I ran into a small error; the reason why I decided to use the 
+#exit() command is because the code will glitch when I got a win or a tie and all
+#lines were filled up. Subsequently, I used exit(). Hopefully, through some experience
+#I will be able to fix my code.
+
 
 def checkTie(gameboard):
     global gamerunning
@@ -134,12 +134,12 @@ def checkWin():
         gamerunning = False
         exit()
 
-"""
-Lines 144-155: The last two functions to finish off this program are used to to switch the player.
-I also decided to create a small computer that chooses between the gameboard through a random
-command. Additionally, if the spot has already been chosen the code will play again with the while\
-loop.
-"""
+
+#Lines 144-155: The last two functions to finish off this program are used to to switch the player.
+#I also decided to create a small computer that chooses between the gameboard through a random
+#command. Additionally, if the spot has already been chosen the code will play again with the while\
+#loop.
+
 
 def switchPlayer():
     global CurrentPlayer
@@ -154,10 +154,10 @@ def computer(gameboard):
             gameboard[bot_p] = "O"
             switchPlayer()
 
-"""
-Final Lines: While the game is running, we run all the functions and check until it is a tie 
-or a win.
-"""
+
+#Final Lines: While the game is running, we run all the functions and check until it is a tie 
+#or a win.
+
 while gamerunning:
     printboard(gameboard)
     playerinput(gameboard)
